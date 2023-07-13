@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.typed-cursor {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 72px;
+    font-weight: 500;
+    @apply text-secondary
+}
