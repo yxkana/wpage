@@ -16,7 +16,7 @@ export function LoadGLTFModel(inter: face) {
       inter.glbPath,
       (gltf) => {
         const obj = gltf.scene;
-        obj.name = "dog";
+        obj.name = "Hi-object";
         obj.position.y = 0;
         obj.position.x = 0;
         obj.receiveShadow = receiveShadow;
@@ -24,7 +24,7 @@ export function LoadGLTFModel(inter: face) {
         inter.scane.add(obj);
 
         obj.traverse(function (child) {
-          if ((child as Mesh).isMesh) {
+          if ((child instanceof Mesh)) {
             child.castShadow = castShadow;
             child.receiveShadow = receiveShadow;
           }

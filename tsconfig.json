@@ -28,6 +28,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"
-  ],
+, "src/model/Voxel-Object.tsx", "src/component/voxel-art.tsx", "src/component/voxel-loader.tsx"  ],
   "exclude": ["node_modules"]
 }

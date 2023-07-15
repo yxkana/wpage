@@ -9,6 +9,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { LoadGLTFModel } from "~/model/Voxel-Object";
 import { DogSpinner, DogContainer } from "~/component/voxel-loader";
+import { useWindowSize } from "~/hooks/ScreenSizer";
 
 function easeOutCirc(x: number) {
   return Math.sqrt(1 - Math.pow(x - 1, 4));
@@ -18,6 +19,12 @@ const VoxelHi = () => {
   const refContainer = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(true);
+  const {
+    width,
+    height,
+  }: { width: undefined | number; height: undefined | number } =
+    useWindowSize();
+
   const refRenderer = useRef<ReturnType<typeof setTimeout> | null>(null);
   /* const urlDogGLB =
     (process.env.NODE_ENV === "production"
@@ -27,21 +34,19 @@ const VoxelHi = () => {
   const handleWindowResize = useCallback(() => {
     const { current: renderer } = refRenderer;
     const { current: container } = refContainer;
+
     if (container && renderer) {
       const scW = container.clientWidth;
       const scH = container.clientHeight;
-
-      
     }
   }, []);
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const { current: container } = refContainer;
-    if (container) {
-      const scW = container.clientWidth;
-      const scH = container.clientHeight;
-
+    if (container && typeof window !== undefined) {
+      const scW = width! / 1.5;
+      const scH = width! / 1.5;
       const renderer = new THREE.WebGLRenderer({
         antialias: true,
         alpha: true,
@@ -55,7 +60,7 @@ const VoxelHi = () => {
       }
       const scene = new THREE.Scene();
 
-      const target = new THREE.Vector3(-0.5, 1.2, 0);
+      const target = new THREE.Vector3(2, 10, -10);
       const initialCameraPosition = new THREE.Vector3(
         20 * Math.sin(0.2 * Math.PI),
         10,
@@ -64,14 +69,14 @@ const VoxelHi = () => {
 
       // 640 -> 240
       // 8   -> 6
-      const scale = scH * 0.005 + 4.8;
+      const scale = scH * 0.008 + 4.8;
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
         scale,
         -scale,
         0.01,
-        50000
+        60000
       );
       camera.position.copy(initialCameraPosition);
       camera.lookAt(target);
@@ -80,10 +85,14 @@ const VoxelHi = () => {
       scene.add(ambientLight);
 
       const controls = new OrbitControls(camera, renderer.domElement);
-      controls.autoRotate = true;
+      controls.autoRotate = false;
       controls.target = target;
 
-      LoadGLTFModel({scane: scene,glbPath: "Hi-obj.glb",options:{castShadow: true,receiveShadow: true}}).then(() => {
+      LoadGLTFModel({
+        scane: scene,
+        glbPath: "obj.glb",
+        options: { castShadow: true, receiveShadow: true },
+      }).then(() => {
         animate();
         setLoading(false);
       });
@@ -99,7 +108,7 @@ const VoxelHi = () => {
           const p = initialCameraPosition;
           const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20;
 
-          camera.position.y = 10;
+          camera.position.y = 0;
           camera.position.x =
             p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed);
           camera.position.z =

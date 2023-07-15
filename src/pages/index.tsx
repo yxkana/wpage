@@ -17,7 +17,6 @@ export default function Home() {
       <div className="gap-52 p-10 flex flex-col container mx-auto">
         <Header></Header>
         <Title></Title>
-        <HiVoxelObject />
       </div>
       {/* Header */}
     </>
