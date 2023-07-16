@@ -30,7 +30,7 @@ export function Header() {
   return (
     <div>
       {!useCheckScreen(820) ? (
-        <div className="z-20 flex w-full items-center justify-between  text-xl font-bold">
+        <div className="flex z-40 relative w-full items-center justify-between  text-xl font-bold">
           <div className="flex gap-0 lg:gap-16">
             <motion.div whileHover="show" className="hover:cursor-pointer">
               <p>Skills</p>
@@ -73,7 +73,7 @@ export function Header() {
           </label>
         </div>
       ) : (
-        <div className="flex justify-end gap-3 h-16">
+        <div className="flex relative z-40 justify-end gap-3 h-16">
           <label className="swap-rotate swap btn-secondary btn">
             <input onClick={toggleTheme} type="checkbox" />
             <Sun size={20} className="swap-off"></Sun>
