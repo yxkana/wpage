@@ -19,7 +19,7 @@ export const DogContainer = forwardRef(
   ) => (
     <Box
       ref={ref}
-      className="relative md:absolute  m-auto md:top-[-200px]  md:right-0 md:translate-x-0"
+      className="absolute right-[50%] translate-x-[50%] xl3:translate-x-0 -z-10   top-[200px]  xl3:top-[-130px] xl3:right-2 xl4:right-60"
     >
       {props.children}
     </Box>

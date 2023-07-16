@@ -1,6 +1,8 @@
 import { animate, motion } from "framer-motion";
-import { Sun, Moon } from "react-feather";
+import { Sun, Moon, Divide } from "react-feather";
 import { useState, useEffect } from "react";
+import { useCheckScreen } from "~/hooks/ScreenChecker";
+import { MoreVertical } from "react-feather";
 
 export function Header() {
   const item = {
@@ -14,59 +16,88 @@ export function Header() {
     },
   };
 
-  const [theme, setTheme] = useState("winter");
+  const [theme, setTheme] = useState("");
 
   const toggleTheme = () => {
-    setTheme(theme === "dracula" ? "winter" : "dracula");
+    setTheme(theme === "winter" ? "daracula" : "winter");
   };
   // initially set the theme and "listen" for changes to apply them to the HTML tag
   useEffect(() => {
     document.querySelector("html")?.setAttribute("data-theme", theme);
   }, [theme]);
 
+  console.log(useCheckScreen(1000));
   return (
-    <div className="flex w-full justify-between  text-2xl font-bold">
-      <div className="flex gap-16">
-        <motion.div whileHover="show" className="hover:cursor-pointer">
-          <p>Skills</p>
-          <motion.div
-            variants={item}
-            animate={{ y: 0 }}
-            className="h-[3px] w-full rounded-md bg-secondary opacity-0"
-          ></motion.div>
-        </motion.div>
-        <motion.div whileHover="show" className="hover:cursor-pointer">
-          <p>Projects</p>
-          <motion.div
-            variants={item}
-            animate={{ y: 0 }}
-            className="h-[3px] w-full rounded-md bg-secondary opacity-0"
-          ></motion.div>
-        </motion.div>
-        <motion.div whileHover="show" className="hover:cursor-pointer">
-          <p>Info</p>
-          <motion.div
-            variants={item}
-            animate={{ y: 0 }}
-            className="h-[3px] w-full rounded-md bg-secondary opacity-0"
-          ></motion.div>
-        </motion.div>
-        <motion.div whileHover="show" className="hover:cursor-pointer">
-          <p>Contacs</p>
-          <motion.div
-            variants={item}
-            animate={{ y: 0 }}
-            className="h-[3px] w-full rounded-md bg-secondary opacity-0"
-          ></motion.div>
-        </motion.div>
-      </div>
-      
-        <label className="btn btn-secondary swap swap-rotate">
-          <input onClick={toggleTheme} type="checkbox" />
-          <Sun size={30} className="swap-on"></Sun>
-          <Moon size={30} className="swap-off"></Moon>
-        </label>
-      
+    <div>
+      {!useCheckScreen(820) ? (
+        <div className="z-20 flex w-full items-center justify-between  text-xl font-bold">
+          <div className="flex gap-0 lg:gap-16">
+            <motion.div whileHover="show" className="hover:cursor-pointer">
+              <p>Skills</p>
+              <motion.div
+                variants={item}
+                animate={{ y: 0 }}
+                className="h-[3px] w-full rounded-md bg-secondary opacity-0"
+              ></motion.div>
+            </motion.div>
+            <motion.div whileHover="show" className="hover:cursor-pointer">
+              <p>Projects</p>
+              <motion.div
+                variants={item}
+                animate={{ y: 0 }}
+                className="h-[3px] w-full rounded-md bg-secondary opacity-0"
+              ></motion.div>
+            </motion.div>
+            <motion.div whileHover="show" className="hover:cursor-pointer">
+              <p>Info</p>
+              <motion.div
+                variants={item}
+                animate={{ y: 0 }}
+                className="h-[3px] w-full rounded-md bg-secondary opacity-0"
+              ></motion.div>
+            </motion.div>
+            <motion.div whileHover="show" className="hover:cursor-pointer">
+              <p>Contacs</p>
+              <motion.div
+                variants={item}
+                animate={{ y: 0 }}
+                className="h-[3px] w-full rounded-md bg-secondary opacity-0"
+              ></motion.div>
+            </motion.div>
+          </div>
+
+          <label className="swap-rotate swap btn-secondary btn">
+            <input onClick={toggleTheme} type="checkbox" />
+            <Sun size={30} className="swap-off"></Sun>
+            <Moon size={30} className="swap-on"></Moon>
+          </label>
+        </div>
+      ) : (
+        <div className="flex justify-end gap-3 h-16">
+          <label className="swap-rotate swap btn-secondary btn">
+            <input onClick={toggleTheme} type="checkbox" />
+            <Sun size={20} className="swap-off"></Sun>
+            <Moon size={20} className="swap-on"></Moon>
+          </label>
+          <details className="dropdown dropdown-end mb-32">
+            <summary className="btn btn-secondary bg-secondary"><MoreVertical size={20} className=""/></summary>
+            <ul className="dropdown-content menu rounded-box z-[1] w-52 bg-base-100 p-2 shadow">
+              <li>
+                <a>Skills</a>
+              </li>
+              <li>
+                <a>Projects</a>
+              </li>
+              <li>
+                <a>Info</a>
+              </li>
+              <li>
+                <a>Contacs</a>
+              </li>
+            </ul>
+          </details>
+        </div>
+      )}
     </div>
   );
 }

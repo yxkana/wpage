@@ -9,7 +9,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { LoadGLTFModel } from "~/model/Voxel-Object";
 import { DogSpinner, DogContainer } from "~/component/voxel-loader";
-import { useWindowSize } from "~/hooks/ScreenSizer";
+import { type } from "os";
+import { useWindowSize } from "rooks";
 
 function easeOutCirc(x: number) {
   return Math.sqrt(1 - Math.pow(x - 1, 4));
@@ -18,35 +19,23 @@ function easeOutCirc(x: number) {
 const VoxelHi = () => {
   const refContainer = useRef<HTMLInputElement>(null);
 
+  const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
+
+  
+ 
+
   const [loading, setLoading] = useState(true);
-  const {
-    width,
-    height,
-  }: { width: undefined | number; height: undefined | number } =
-    useWindowSize();
 
   const refRenderer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  /* const urlDogGLB =
-    (process.env.NODE_ENV === "production"
-      ? "https://craftzdog.global.ssl.fastly.net/homepage"
-      : "") + "/dog.glb"; */
-
-  const handleWindowResize = useCallback(() => {
-    const { current: renderer } = refRenderer;
-    const { current: container } = refContainer;
-
-    if (container && renderer) {
-      const scW = container.clientWidth;
-      const scH = container.clientHeight;
-    }
-  }, []);
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const { current: container } = refContainer;
     if (container && typeof window !== undefined) {
-      const scW = width! / 1.5;
-      const scH = width! / 1.5;
+
+      
+      const scW = innerWidth! < 820 ? innerWidth! : 2500 / 2;
+      const scH = innerWidth! < 820 ? innerWidth! : 2500 / 2;
       const renderer = new THREE.WebGLRenderer({
         antialias: true,
         alpha: true,
@@ -60,16 +49,18 @@ const VoxelHi = () => {
       }
       const scene = new THREE.Scene();
 
-      const target = new THREE.Vector3(2, 10, -10);
+      const target = new THREE.Vector3(3.5, 10, -10);
       const initialCameraPosition = new THREE.Vector3(
-        20 * Math.sin(0.2 * Math.PI),
-        10,
-        20 * Math.cos(0.2 * Math.PI)
+        0 * Math.sin(0.2 * Math.PI),
+        200,
+        100 * Math.cos(0.2 * Math.PI)
       );
 
       // 640 -> 240
       // 8   -> 6
-      const scale = scH * 0.008 + 4.8;
+
+      
+      const scale =  innerWidth! < 820 ? 11 : 10;
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
@@ -85,8 +76,14 @@ const VoxelHi = () => {
       scene.add(ambientLight);
 
       const controls = new OrbitControls(camera, renderer.domElement);
-      controls.autoRotate = false;
+      controls.autoRotate = true;
       controls.target = target;
+      controls.enableZoom = false;
+      controls.autoRotateSpeed = 0.1;
+      controls.enablePan = false;
+      
+      
+      
 
       LoadGLTFModel({
         scane: scene,
@@ -106,7 +103,7 @@ const VoxelHi = () => {
 
         if (frame <= 100) {
           const p = initialCameraPosition;
-          const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20;
+          const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 6;
 
           camera.position.y = 0;
           camera.position.x =
@@ -127,14 +124,7 @@ const VoxelHi = () => {
         renderer.dispose();
       };
     }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize, false);
-    return () => {
-      window.removeEventListener("resize", handleWindowResize, false);
-    };
-  }, [handleWindowResize]);
+  }, [innerWidth! < 820]);
 
   return (
     <DogContainer ref={refContainer}>{loading && <DogSpinner />}</DogContainer>
