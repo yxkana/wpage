@@ -8,7 +8,7 @@ import { clsx } from "clsx";
 
 export function Skills() {
   return (
-    <div className="mt-[200px] gap-32 flex flex-col lg:px-20 xl3:mt-[550px]">
+    <div className="mt-[200px] gap-32 flex flex-col">
       <h1 className="m-auto text-7xl font-bold">Favorite tools</h1>
       <SkillContainer className="flex items-end justify-end" id="Frontend" />
       <SkillContainer className="flex items-start justify-start" id="Backend" />

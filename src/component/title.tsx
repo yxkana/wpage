@@ -27,7 +27,7 @@ export function Title() {
       <div className="flex flex-col gap-5 lg:gap-10">
         <div className="flex gap-3 lg:gap-5 text-2xl lg:text-6xl font-semibold">
           <p>Hello, I’m</p>
-          <p className="text-2xl lg:text-6xl">Daniel Kaválek</p>
+          <p className="text-2xl lg:text-6xl">Daniel</p>
         </div>
         <div>
           <span className="text-4xl xl:text-8xl font-bold text-secondary" ref={el}></span>

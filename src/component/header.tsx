@@ -3,8 +3,12 @@ import { Sun, Moon, Divide } from "react-feather";
 import { useState, useEffect } from "react";
 import { useCheckScreen } from "~/hooks/ScreenChecker";
 import { MoreVertical } from "react-feather";
+import { useThemeState } from "~/states/themeStates";
+
 
 export function Header() {
+
+  const themeState = useThemeState((state)=> state.changeState);
   const item = {
     show: {
       /*  width: "100%", */
@@ -20,6 +24,7 @@ export function Header() {
 
   const toggleTheme = () => {
     setTheme(theme === "winter" ? "daracula" : "winter");
+    themeState(theme === "winter" ? false : true);
   };
   // initially set the theme and "listen" for changes to apply them to the HTML tag
   useEffect(() => {

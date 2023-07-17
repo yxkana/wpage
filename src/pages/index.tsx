@@ -16,14 +16,16 @@ export default function Home() {
   return (
     <>
       <div
-        className="container mx-auto flex flex-col gap-10 lg:gap-52 p-10 xl4:px-80
+        className="container mx-auto flex flex-col gap-10 p-10 lg:gap-52 xl4:px-80
       "
       >
         <Header></Header>
         <Title></Title>
-        <HiVoxelObject />
-        <Info />
-        <Skills/>
+        
+        <div className="lg:px-20 mt-[600px] xl2:mt-[100px]">
+          <Info />
+          <Skills />
+        </div>
       </div>
       {/* Header */}
     </>
