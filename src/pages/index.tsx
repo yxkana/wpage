@@ -5,6 +5,7 @@ import { Header } from "~/component/header";
 import { Title } from "~/component/title";
 import VoxelLoader from "~/component/voxel-loader";
 import { Skills } from "~/component/Skills";
+import { Info } from "~/component/Info";
 
 const HiVoxelObject = dynamic(() => import("~/component/voxel-art"), {
   ssr: false,
@@ -21,6 +22,7 @@ export default function Home() {
         <Header></Header>
         <Title></Title>
         <HiVoxelObject />
+        <Info />
         <Skills/>
       </div>
       {/* Header */}

@@ -32,7 +32,10 @@ export function Header() {
       {!useCheckScreen(820) ? (
         <div className="flex z-40 relative w-full items-center justify-between  text-xl font-bold">
           <div className="flex gap-0 lg:gap-16">
-            <motion.div whileHover="show" className="hover:cursor-pointer">
+            <p className="text-2xl lg:text-4xl font-semibold">Dk.dev</p>
+
+           <div className="flex mt-auto relative top-1 gap-16">
+           <motion.div whileHover="show" className="hover:cursor-pointer">
               <p>Skills</p>
               <motion.div
                 variants={item}
@@ -64,6 +67,7 @@ export function Header() {
                 className="h-[3px] w-full rounded-md bg-secondary opacity-0"
               ></motion.div>
             </motion.div>
+           </div>
           </div>
 
           <label className="swap-rotate swap btn-secondary btn">

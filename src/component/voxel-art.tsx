@@ -34,8 +34,8 @@ const VoxelHi = () => {
     if (container && typeof window !== undefined) {
 
       
-      const scW = innerWidth! < 820 ? innerWidth! : 2500 / 2;
-      const scH = innerWidth! < 820 ? innerWidth! : 2500 / 2;
+      const scW = innerWidth! < 1600 ? innerWidth! / 1.5 : innerWidth! < 820 ? innerWidth! :2500 / 2;
+      const scH = innerWidth! < 1600 ? innerWidth! / 1.5 : innerWidth! < 820 ? innerWidth! :2500 / 2;
       const renderer = new THREE.WebGLRenderer({
         antialias: true,
         alpha: true,
@@ -60,7 +60,7 @@ const VoxelHi = () => {
       // 8   -> 6
 
       
-      const scale =  innerWidth! < 820 ? 11 : 10;
+      const scale =  innerWidth! < 1600 ? 13 : innerWidth! < 820 ? 11 : 10;
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
@@ -124,7 +124,7 @@ const VoxelHi = () => {
         renderer.dispose();
       };
     }
-  }, [innerWidth! < 820]);
+  }, [innerWidth! < 820 || innerWidth! < 1500]);
 
   return (
     <DogContainer ref={refContainer}>{loading && <DogSpinner />}</DogContainer>

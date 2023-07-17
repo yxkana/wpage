@@ -11,6 +11,7 @@
   "dependencies": {
     "@chakra-ui/react": "^2.7.1",
     "@t3-oss/env-nextjs": "^0.3.1",
+    "clsx": "^2.0.0",
     "framer-motion": "^10.12.20",
     "next": "^13.4.2",
     "react": "18.2.0",
@@ -19,7 +20,8 @@
     "rooks": "^7.14.1",
     "three": "^0.154.0",
     "typed.js": "^2.0.16",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@types/eslint": "^8.37.0",
