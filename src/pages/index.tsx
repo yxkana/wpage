@@ -24,7 +24,7 @@ export default function Home() {
         
         <div className="lg:px-20 mt-[600px] xl2:mt-[100px]">
           <Info />
-          <Skills />
+         <Skills />
         </div>
       </div>
       {/* Header */}

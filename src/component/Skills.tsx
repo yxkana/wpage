@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useCheckScreen } from "~/hooks/ScreenChecker";
 import { useState } from "react";
 import {
   useShowFrontEndSkill,
@@ -8,10 +9,16 @@ import { clsx } from "clsx";
 
 export function Skills() {
   return (
-    <div className="mt-[200px] gap-32 flex flex-col">
-      <h1 className="m-auto text-7xl font-bold">Favorite tools</h1>
-      <SkillContainer className="flex items-end justify-end" id="Frontend" />
-      <SkillContainer className="flex items-start justify-start" id="Backend" />
+    <div className="mt-[200px] flex flex-col gap-32">
+      <h1 className="m-auto text-4xl font-bold lg:text-7xl">Favorite tools</h1>
+      <SkillContainer
+        className="flex flex-col md:flex-row md:items-end md:justify-end"
+        id="Frontend"
+      />
+      <SkillContainer
+        className="flex flex-col md:flex-row xl:items-start xl:justify-start"
+        id="Backend"
+      />
     </div>
   );
 }
@@ -26,8 +33,8 @@ function SkillContainer(props: React.ComponentPropsWithoutRef<"div">) {
 
   return (
     <div {...props}>
-      <div className="flex justify-center gap-10">
-        {props.id === "Frontend" ? <SkillShower {...props}/> : null}
+      <div className="justify-center gap-10 xl:flex">
+        {props.id === "Frontend" && !useCheckScreen(1280) ? <SkillShower {...props} /> : null}
         <div className="flex flex-col gap-10">
           <h1 className="text-3xl font-semibold lg:text-6xl">{props.id}</h1>
           <div className="flex flex-col gap-3">
@@ -89,17 +96,19 @@ function SkillContainer(props: React.ComponentPropsWithoutRef<"div">) {
             </div>
           </div>
         </div>
-        {props.id === "Backend" ? <SkillShower {...props}/> : null}
+        {props.id === "Backend" ? <SkillShower {...props} /> : null}
+        {useCheckScreen(1280) && props.id ==="Frontend" ? <SkillShower {...props}/> :null}
       </div>
     </div>
   );
 }
 
 function SkillShower(props: React.ComponentPropsWithoutRef<"div">) {
-  const skillState = props.id === "Frontend" ? useShowFrontEndSkill() : useShowBackEndSkill();
+  const skillState =
+    props.id === "Frontend" ? useShowFrontEndSkill() : useShowBackEndSkill();
 
   return (
-    <div className="col flex h-64 w-64">
+    <div className="col mx-auto mt-10 flex h-48 w-48 xl:mx-0 xl:mt-0 xl:h-64 xl:w-64">
       <Image
         src={"/logos/" + skillState.skills[skillState.skill] + ".svg"}
         alt="frontendLogoImage"

@@ -6,7 +6,7 @@ interface ThemeState {
 }
 
 export const useThemeState = create<ThemeState>((set) => ({
-  dark: true,
+  dark: false,
 
   changeState: (newState: boolean) => set((state) => ({ dark: newState })),
 }));
