@@ -6,5 +6,5 @@
 .typed-cursor {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
-    @apply text-secondary text-4xl lg:text-8xl
+    @apply text-secondary text-[44px] lg:text-8xl
 }
