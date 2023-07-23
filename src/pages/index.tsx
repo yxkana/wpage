@@ -6,6 +6,7 @@ import { Title } from "~/component/title";
 import VoxelLoader from "~/component/voxel-loader";
 import { Skills } from "~/component/Skills";
 import { Info } from "~/component/Info";
+import { Projects } from "~/component/projects";
 
 const HiVoxelObject = dynamic(() => import("~/component/voxel-art"), {
   ssr: false,
@@ -22,9 +23,10 @@ export default function Home() {
         <Header></Header>
         <Title></Title>
         
-        <div className="lg:px-20 mt-[600px] xl2:mt-[100px]">
+        <div className="lg:px-20 gap-[200px] flex flex-col mt-[600px] xl2:mt-[100px]">
           <Info />
           <Skills />
+          <Projects/>
         </div>
       </div>
       {/* Header */}
