@@ -22,11 +22,11 @@ export default function Home() {
       >
         <Header></Header>
         <Title></Title>
-        
-        <div className="lg:px-20 gap-[200px] flex flex-col mt-[600px] xl2:mt-[100px]">
+
+        <div className="mt-[600px] flex flex-col gap-[200px] lg:px-20 xl2:mt-[100px]">
           <Info />
           <Skills />
-          <Projects/>
+          <Projects />
         </div>
       </div>
       {/* Header */}
