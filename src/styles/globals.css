@@ -8,3 +8,8 @@
     font-weight: 500;
     @apply text-secondary text-[44px] lg:text-8xl
 }
+
+
+body{
+    overflow-x: hidden;
+}

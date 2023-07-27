@@ -8,5 +8,5 @@ interface ThemeState {
 export const useThemeState = create<ThemeState>((set) => ({
   dark: false,
 
-  changeState: (newState: boolean) => set((state) => ({ dark: newState })),
+  changeState: (newState: boolean) => set(() => ({ dark: newState })),
 }));

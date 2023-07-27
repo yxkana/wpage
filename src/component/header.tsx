@@ -1,9 +1,12 @@
-import { animate, motion } from "framer-motion";
-import { Sun, Moon, Divide } from "react-feather";
+import {  motion } from "framer-motion";
+import { Sun, Moon } from "react-feather";
 import { useState, useEffect } from "react";
 import { useCheckScreen } from "~/hooks/ScreenChecker";
 import { MoreVertical } from "react-feather";
 import { useThemeState } from "~/states/themeStates";
+import { useLanguageState } from "~/states/languageState";
+import clsx from "clsx";
+
 
 export function Header() {
   const themeState = useThemeState((state) => state.changeState);
@@ -18,6 +21,9 @@ export function Header() {
     },
   };
 
+  const language = useLanguageState((state) => state.czech);
+  const setLanguage = useLanguageState((state) => state.changeState);
+
   const [theme, setTheme] = useState("");
 
   const toggleTheme = () => {
@@ -29,7 +35,6 @@ export function Header() {
     document.querySelector("html")?.setAttribute("data-theme", theme);
   }, [theme]);
 
-  console.log(useCheckScreen(1000));
   return (
     <div>
       {!useCheckScreen(820) ? (
@@ -38,32 +43,55 @@ export function Header() {
             <p className="text-2xl font-semibold lg:text-4xl">Dk.dev</p>
 
             <div className="relative top-1 mt-auto flex gap-16">
-              <motion.div whileHover="show" className="hover:cursor-pointer">
-                <p>Skills</p>
+              <motion.div
+                onClick={() => {
+                  const element = document.getElementById("skills");
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+                }}
+                whileHover="show"
+                className="hover:cursor-pointer"
+              >
+                <p>{language ? "Dovednosti" : "Skills"}</p>
                 <motion.div
                   variants={item}
                   animate={{ y: 0 }}
                   className="h-[3px] w-full rounded-md bg-secondary opacity-0"
                 ></motion.div>
               </motion.div>
-              <motion.div whileHover="show" className="hover:cursor-pointer">
-                <p>Projects</p>
+              <motion.div
+                onClick={() => {
+                  const element = document.getElementById("projects");
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+                }}
+                whileHover="show"
+                className="hover:cursor-pointer"
+              >
+                <p>{language ? "Projekty" : "Projects"}</p>
                 <motion.div
                   variants={item}
                   animate={{ y: 0 }}
                   className="h-[3px] w-full rounded-md bg-secondary opacity-0"
                 ></motion.div>
               </motion.div>
-              <motion.div whileHover="show" className="hover:cursor-pointer">
+              <motion.div
+                onClick={() => {
+                  const element = document.getElementById("info");
+
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+                }}
+                whileHover="show"
+                className="hover:cursor-pointer"
+              >
                 <p>Info</p>
-                <motion.div
-                  variants={item}
-                  animate={{ y: 0 }}
-                  className="h-[3px] w-full rounded-md bg-secondary opacity-0"
-                ></motion.div>
-              </motion.div>
-              <motion.div whileHover="show" className="hover:cursor-pointer">
-                <p>Contacs</p>
                 <motion.div
                   variants={item}
                   animate={{ y: 0 }}
@@ -72,17 +100,47 @@ export function Header() {
               </motion.div>
             </div>
           </div>
-
-          <label className="swap btn-secondary swap-rotate btn">
-            <input onClick={toggleTheme} type="checkbox" />
-            <Sun size={30} className="swap-off"></Sun>
-            <Moon size={30} className="swap-on"></Moon>
-          </label>
+          <div className="flex gap-16">
+            <div className="flex items-center gap-2">
+              <p
+                onClick={() => {
+                  setLanguage(false);
+                }}
+                className={clsx(
+                  "hover:cursor-pointer",
+                  language
+                    ? "text-[18px]"
+                    : "text-xl font-semibold text-secondary"
+                )}
+              >
+                eng
+              </p>
+              <p>/</p>
+              <p
+                onClick={() => {
+                  setLanguage(true);
+                }}
+                className={clsx(
+                  "hover:cursor-pointer",
+                  !language
+                    ? "text-[18px]"
+                    : "text-xl font-semibold text-secondary"
+                )}
+              >
+                cz
+              </p>
+            </div>
+            <label className="swap-rotate swap btn-secondary btn">
+              <input onClick={toggleTheme} type="checkbox" />
+              <Sun size={30} className="swap-off"></Sun>
+              <Moon size={30} className="swap-on"></Moon>
+            </label>
+          </div>
         </div>
       ) : (
         <div className="relative z-40 flex h-16 justify-between gap-3">
-          <h1 className="text-2xl my-auto font-semibold">Dk.dev</h1>
-          <div className="flex gap-4 my-auto">
+          <h1 className="my-auto text-2xl font-semibold">Dk.dev</h1>
+          <div className="my-auto flex gap-4">
             <label className="swap-rotate swap btn-secondary btn">
               <input onClick={toggleTheme} type="checkbox" />
               <Sun size={20} className="swap-off"></Sun>
@@ -93,18 +151,68 @@ export function Header() {
                 <MoreVertical size={20} className="" />
               </summary>
               <ul className="dropdown-content menu rounded-box z-[1] w-52 bg-base-100 p-2 shadow">
-                <li>
+                <li
+                  onClick={() => {
+                    const element = document.getElementById("skills");
+                    element?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    });
+                  }}
+                >
                   <a>Skills</a>
                 </li>
-                <li>
+                <li
+                  onClick={() => {
+                    const element = document.getElementById("projects");
+                    element?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    });
+                  }}
+                >
                   <a>Projects</a>
                 </li>
-                <li>
+                <li
+                  onClick={() => {
+                    const element = document.getElementById("info");
+                    element?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    });
+                  }}
+                >
                   <a>Info</a>
                 </li>
-                <li>
-                  <a>Contacs</a>
-                </li>
+                <div className="m-auto flex items-center gap-2 py-3">
+                  <p
+                    onClick={() => {
+                      setLanguage(false);
+                    }}
+                    className={clsx(
+                      "hover:cursor-pointer",
+                      language
+                        ? "text-[13px]"
+                        : "text-sm font-semibold text-secondary"
+                    )}
+                  >
+                    eng
+                  </p>
+                  <p className="text-sm">/</p>
+                  <p
+                    onClick={() => {
+                      setLanguage(true);
+                    }}
+                    className={clsx(
+                      "hover:cursor-pointer",
+                      !language
+                        ? "text-[13px]"
+                        : "text-sm font-semibold text-secondary"
+                    )}
+                  >
+                    cz
+                  </p>
+                </div>
               </ul>
             </details>
           </div>

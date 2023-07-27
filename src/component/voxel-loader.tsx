@@ -11,7 +11,7 @@ export const DogSpinner = () => (
     mt="calc(0px - var(--spinner-size))"
   />
 );
-
+/* eslint-disable-next-line react/display-name */
 export const DogContainer = forwardRef(
   (
     props: React.ComponentPropsWithRef<"div">,
@@ -19,13 +19,13 @@ export const DogContainer = forwardRef(
   ) => (
     <Box
       ref={ref}
-      className="absolute right-[50%] translate-x-[50%] xl3:translate-x-0 z-20   top-[200px] xl2:top-[-130px] xl2:right-2 xl2:translate-x-0  xl4:right-60"
+      className="absolute right-[50%] translate-x-[50%] xl3:translate-x-0 z-20   top-[250px] md:top-[500px]  xl2:top-[20px] xl2:right-2 xl2:translate-x-0 xl3:top-[-120px]  xl4:right-60"
     >
       {props.children}
     </Box>
   )
 );
-
+/* eslint-disable-next-line react/display-name */
 const Loader = () => {
   return (
     <DogContainer>

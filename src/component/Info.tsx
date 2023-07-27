@@ -1,27 +1,56 @@
-import { Mail, GitHub,ExternalLink,Clipboard } from "react-feather";
+import { Mail, GitHub} from "react-feather";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useThemeState } from "~/states/themeStates";
-import { set } from "zod";
+
+import { useLanguageState } from "~/states/languageState";
 
 export function Info() {
+  const language = useLanguageState((state) => state.czech);
   return (
-    <div className="lg:px-20 xl:px-60">
-      <h2 className="mb-16 text-4xl lg:text-6xl font-semibold">Něco málo o mně</h2>
-      <div className="text-xl lg:text-2xl tracking-wider lg:leading-9 lg:tracking-wider">
-        <p className="">
-          {" "}
-          Jsem bývalí it guy, začal jsem se učit web development, protože jsem
-          chtěl dělat něco truchu více creativního než jen "nastavovat routery",
-          mám chuť se nadále sebezlepšovat a učit se novým věcem v tomto oboru.
-        </p>
+    <div id="info" className="lg:px-20 xl:px-60">
+      {language ? (
+        <h2 className="mb-16 text-4xl font-semibold lg:text-6xl">
+          Něco málo o mně
+        </h2>
+      ) : (
+        <h2 className="mb-16 text-4xl font-semibold lg:text-6xl">
+          Something about me
+        </h2>
+      )}
+      <div className="text-xl tracking-wider lg:text-2xl lg:leading-9 lg:tracking-wider">
+        {language ? (
+          <p>
+            Jsem bývalí it guy, začal jsem se učit web development, protože jsem
+            chtěl dělat něco truchu více creativního než jen &quot;nastavovat
+            routery&quot;, furt zkouším a učím se novám věcem, a obecně se chci furt
+            zlepšovat v tomto oboru.
+          </p>
+        ) : (
+          <p>
+            I&apos;m a former it guy, I started learning web development because I
+            wanted to do something a little more creative than just &quot;set up
+            routers&quot;, I keep trying and learning new things and in general, want
+            to keep improving in this field.
+          </p>
+        )}
         <br />
-        <p>
-          Bohužel zatím nemám žádnou profesionální zkušenost v tomto oboru, mám
-          ale za sebou pár praktických projektu a kurzů, které jsou k vidění
-          níže spolu s pomůckami, které jsem uplatnil během těchto projektů. A
-          jsem připraven zkušenosti které jsem se naučil uplatnit v praxi.
-        </p>
+        {language ? (
+          <p>
+            Bohužel zatím nemám žádnou profesionální zkušenost v tomto oboru,
+            mám ale za sebou pár praktických projektu a kurzů, které jsou k
+            vidění níže spolu s nástroji, které jsem uplatnil během těchto
+            projektů. A jsem připraven zkušenosti, které jsem se naučil uplatnit
+            v praxi.
+          </p>
+        ) : (
+          <p>
+            Unfortunately, I have no professional experience in this field yet,
+            but I have have done a few practical projects and courses that are
+            on display below, along with the tools I&apos;ve applied during those
+            projects, and I&apos;m ready to put what I&apos;ve learned into practice.
+          </p>
+        )}
         <References />
       </div>
     </div>
@@ -53,7 +82,7 @@ function References() {
       >
         <button
           onClick={() =>
-            openInNewTab("https://github.com/yxkana?tab=repositories")
+            void openInNewTab("https://github.com/yxkana?tab=repositories")
           }
           className="btn-secondary btn-circle btn"
         >
@@ -67,7 +96,7 @@ function References() {
       >
         <button
           onClick={() => {
-            navigator.clipboard.writeText("kavalek.daniel01@gmail.com");
+          void navigator.clipboard.writeText("kavalek.daniel01@gmail.com");
             if (toast === false) {
               showToast();
             }
@@ -102,7 +131,7 @@ function References() {
 
 function EmailToast() {
   return (
-    <div className="toast toast-start">
+    <div className="toast-start toast">
       <div className="alert alert-info text-lg">
         <span>Address copied.</span>
       </div>

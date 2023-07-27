@@ -1,12 +1,13 @@
 import Typed from "typed.js";
 import { useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
-import { Inconsolata } from "next/font/google";
 
-const lilita = Inconsolata({ subsets: ["latin-ext"], weight: ["700"] });
+import { useLanguageState } from "~/states/languageState";
+import clsx from "clsx";
+
 
 export function Title() {
   const el = useRef(null);
+  const language = useLanguageState((state) => state.czech);
 
   useEffect(() => {
     const typed = new Typed(el.current, {
@@ -26,7 +27,7 @@ export function Title() {
    
       <div className="flex flex-col gap-2 lg:gap-10">
         <div className="flex gap-3 lg:gap-5 text-3xl lg:text-6xl font-semibold">
-          <p>Hello, I’m</p>
+          <p>{clsx(language ? "Zdravím, jsem" : "Hello, I’m")}</p>
           <p className="text-3xl lg:text-6xl">Daniel</p>
         </div>
         <div>
