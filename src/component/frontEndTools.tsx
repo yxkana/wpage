@@ -69,7 +69,7 @@ export function SkillContainerFrondend() {
           }
           className="justify-center  gap-10 xl:flex"
         >
-         {/*  eslint-disable-next-line react-hooks/exhaustive-deps */}
+        
           {!useCheckScreen(1280) ? (
             <SkillShower />
           ) : null}
@@ -136,6 +136,9 @@ export function SkillContainerFrondend() {
               </motion.ul>
             </div>
           </div>
+          {useCheckScreen(1280) ? (
+            <SkillShower />
+          ) : null}
         </motion.div>
       </div>
     );

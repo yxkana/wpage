@@ -35,7 +35,7 @@ export function Projects() {
     : "Weather applications, with up to five days of forecasts and location storage";
 
   return (
-    <div id="projects" className="flex flex-col items-center gap-16 xl:gap-52">
+    <div id="projects" className="flex flex-col items-center gap-16 xl:gap-60">
       <h1 className="text-5xl lg:text-7xl font-bold">Projects</h1>
       <div className="grid grid-cols-1 gap-12 xl:grid-cols-2">
         <Project

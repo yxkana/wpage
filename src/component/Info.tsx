@@ -10,11 +10,11 @@ export function Info() {
   return (
     <div id="info" className="lg:px-20 xl:px-60">
       {language ? (
-        <h2 className="mb-16 text-4xl font-semibold lg:text-6xl">
+        <h2 className="mb-16 text-5xl font-semibold lg:text-6xl">
           Něco málo o mně
         </h2>
       ) : (
-        <h2 className="mb-16 text-4xl font-semibold lg:text-6xl">
+        <h2 className="mb-16 text-5xl w-[70%] lg:w-full leading-snug lg:leading-none font-semibold lg:text-6xl">
           Something about me
         </h2>
       )}
