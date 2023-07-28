@@ -6,7 +6,7 @@ import {
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { LoadGLTFModel } from "~/model/Voxel-Object";
-import { DogSpinner, DogContainer } from "~/component/voxel-loader";
+import { ObjectLoader, DogContainer } from "~/component/voxel-loader";
 
 import { useMediaQuery } from "usehooks-ts";
 
@@ -122,7 +122,7 @@ const VoxelHi = () => {
   }, [ultraWide,Wide,notebook,tablet,mobile]);
 
   return (
-    <DogContainer ref={refContainer}>{loading && <DogSpinner />}</DogContainer>
+    <DogContainer ref={refContainer}>{loading && <ObjectLoader />}</DogContainer>
   );
 };
 
