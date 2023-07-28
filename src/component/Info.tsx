@@ -22,14 +22,14 @@ export function Info() {
         {language ? (
           <p>
             Jsem bývalí it guy, začal jsem se učit web development, protože jsem
-            chtěl dělat něco truchu více creativního než jen &quot;nastavovat
-            routery&quot;, furt zkouším a učím se novám věcem, a obecně se chci furt
+            chtěl dělat, něco truchu více creativního než jen &quot;nastavovat
+            routery&quot;, furt zkouším a učím se nové věci, a obecně se chci furt
             zlepšovat v tomto oboru.
           </p>
         ) : (
           <p>
-            I&apos;m a former it guy, I started learning web development because I
-            wanted to do something a little more creative than just &quot;set up
+            I&apos;m a former it guy, I started learning web development, because I
+            wanted to do, something a little more creative than just &quot;set up
             routers&quot;, I keep trying and learning new things and in general, want
             to keep improving in this field.
           </p>
@@ -46,7 +46,7 @@ export function Info() {
         ) : (
           <p>
             Unfortunately, I have no professional experience in this field yet,
-            but I have have done a few practical projects and courses that are
+            but I have done a few practical projects and courses that are
             on display below, along with the tools I&apos;ve applied during those
             projects, and I&apos;m ready to put what I&apos;ve learned into practice.
           </p>
@@ -108,6 +108,11 @@ function References() {
       </div>
       {/* Frontendmentor */}
       <div
+      onClick={
+        ()=>{
+          void openInNewTab("https://www.frontendmentor.io/profile/yxkana")
+        }
+      }
         className="tooltip-secondary tooltip tooltip-bottom"
         data-tip="Frontend Mentor"
       >
